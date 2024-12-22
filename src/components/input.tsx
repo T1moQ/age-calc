@@ -6,6 +6,9 @@ type InputProps = {
 	className?: string
 	maxLength?: number
 	placeholder?: string
+	value?: string
+	name?: string
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const Input: FC<InputProps> = ({
@@ -13,6 +16,9 @@ export const Input: FC<InputProps> = ({
 	className,
 	maxLength,
 	placeholder,
+	value,
+	name,
+	onChange,
 }) => {
 	return (
 		<div className={cn('flex flex-col', className)}>
@@ -23,7 +29,10 @@ export const Input: FC<InputProps> = ({
 				{label}
 			</label>
 			<input
-				type="number"
+				type="text"
+				name={name}
+				onChange={onChange}
+				value={value}
 				maxLength={maxLength}
 				placeholder={placeholder}
 				required
