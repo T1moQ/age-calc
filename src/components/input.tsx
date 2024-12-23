@@ -10,6 +10,7 @@ type InputProps = {
 	value?: string
 	name?: string
 	error: FieldError
+	id?: string
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 } & UseFormRegisterReturn
 
@@ -23,6 +24,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 			value,
 			name,
 			error,
+			id,
 			onChange,
 			...rest
 		},
@@ -32,13 +34,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 			<div className={cn('flex flex-col', className)}>
 				<label
 					htmlFor=""
-					className={`mt-1 font-bold text-[12px] text-neutral-smokey-grey tracking-[0.3em] ${
+					className={`mt-1 font-bold text-[12px] lg:text-[14px] text-neutral-smokey-grey tracking-[0.3em] ${
 						error && 'text-primary-light-red'
 					}`}
 				>
 					{label}
 				</label>
 				<input
+					id={id}
 					ref={ref}
 					{...rest}
 					type="text"
@@ -48,14 +51,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 					maxLength={maxLength}
 					placeholder={placeholder}
 					required
-					className={`py-2 px-3 border border-neutral-light-grey font-bold rounded-md mt-1 text-[22px] outline-none active:border-primary-purple ${
+					className={`py-2 lg:py-3.5 px-3 lg:px-5 border border-neutral-light-grey font-bold rounded-md mt-1 lg:mt-2 text-[22px] lg:text-m outline-none active:border-primary-purple ${
 						error && 'border-primary-light-red'
 					}`}
 				/>
 				{error && (
 					<span
-						className={`error mt-2 text-primary-light-red text-[12px] ${
-							error && 'mb-4'
+						className={`error mt-2 lg:mt-1 text-primary-light-red text-[12px] lg:text-[16px] ${
+							error && ''
 						}`}
 					>
 						{error.message}
